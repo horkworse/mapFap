@@ -21,6 +21,7 @@ namespace MapCourier
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseWebRoot("Views");
                 });
     }
 }
