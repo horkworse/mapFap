@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\art20\\.nuget\\packages\\": {}
+    "C:\\Users\\hvore\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProjectGit\\mapFap\\MapCourier\\MapCourier\\MapCourier.csproj",
+      "projectUniqueName": "C:\\GOVNO\\mapFap\\MapCourier\\MapCourier\\MapCourier.csproj",
       "projectName": "MapCourier",
-      "projectPath": "D:\\ProjectGit\\mapFap\\MapCourier\\MapCourier\\MapCourier.csproj",
-      "packagesPath": "C:\\Users\\art20\\.nuget\\packages\\",
-      "outputPath": "D:\\ProjectGit\\mapFap\\MapCourier\\MapCourier\\obj\\",
+      "projectPath": "C:\\GOVNO\\mapFap\\MapCourier\\MapCourier\\MapCourier.csproj",
+      "packagesPath": "C:\\Users\\hvore\\.nuget\\packages\\",
+      "outputPath": "C:\\GOVNO\\mapFap\\MapCourier\\MapCourier\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\art20\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hvore\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
