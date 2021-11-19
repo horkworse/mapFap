@@ -4,10 +4,13 @@ using System.Net;
 
 namespace MapCourier
 {
-    class Mark
+    public class Mark
     {
         public readonly string X;
         public readonly string Y;
+        public Mark NearStorage;
+        public int NearStorageDist;
+        public readonly char Status = 'n'; // 'b' - busy, 'f' - free, 'n' - not needed
         public Mark(string x, string y)
         {
             X = x;
