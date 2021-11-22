@@ -14,97 +14,51 @@
             height: 75%;
             overflow: hidden;
         }
-
-        #reset {
-            padding: 4px 10px;
-            background: #00a81f;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px 0 rgba(38, 38, 38, 0.5);
-            border: none;
-            color: #fff;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-            #reset:disabled {
-                background: #f2f2f2;
-                color: #6e6d6d;
-                cursor: default;
-            }
     </style>
 </head>
+
 <body>
-    <div id="container"></div>
     <script src="https://mapgl.2gis.com/api/js/v1"></script>
     <script src="https://unpkg.com/@2gis/mapgl-directions@^2/dist/directions.js"></script>
+    <div id="container">
+        <div class="buttons">
+            <button id="drawMap">Построение маршрута</button>
+        </div>
+    </div>
+
     <script>
-        const map = new mapgl.Map('container', {
-            center: [60.65533, 56.840548],
-            zoom: 13,
-            key: 'bfd8bbca-8abf-11ea-b033-5fa57aae2de7',
-        });
+        const buttonDraw = document.getElementById('drawMap')
+        buttonDraw.onclick = function () { drawMap() }
 
-        const directions = new mapgl.Directions(map, {
-            // This key can be used for demo purpose only!
-            // You can get your own key on http://partner.api.2gis.ru/
-            directionsApiKey: 'rurbbn3446',
-        });
-        const markers = [];
+        function drawMap() {
+            const map = new mapgl.Map('container', {
+                center: [60.65533, 56.840548],
+                zoom: 13,
+                key: 'bfd8bbca-8abf-11ea-b033-5fa57aae2de7',
+            });
 
-        let firstPoint;
-        let secondPoint;
-        // A current selecting point
-        let selecting = 'a';
-        const buttonText = ['Choose two points on the map', 'Reset points'];
+            const directions = new mapgl.Directions(map, {
+                directionsApiKey: 'rurbbn3446',
+            });
 
-        const controlsHtml = `<button id="reset" disabled>${buttonText[0]}</button> `;
-        new mapgl.Control(map, controlsHtml, {
-            position: 'topLeft',
-        });
-        const resetButton = document.getElementById('reset');
+            //Задаём точки для построения пешеходного маршрута.
+            //TODO: точки должны прийти с алгоритма на бэке.
+            let currentPos = [60.654238, 56.844077];
+            let storagePos = [60.572245, 56.83239];
+            let firstOrderPos = [60.539107, 56.865548];
+            let secondOrderPos = [60.631612, 56.907548];
+            let thirdOrderPos = [60.613359, 56.91729];
+            //Построение и отрисовка маршрута.
+            directions.pedestrianRoute({
+                points: [
+                    currentPos,
+                    storagePos,
+                    firstOrderPos,
+                    secondOrderPos,
+                    thirdOrderPos,
+                ],
+            });
 
-        resetButton.addEventListener('click', function () {
-            selecting = 'a';
-            firstPoint = undefined;
-            secondPoint = undefined;
-            directions.clear();
-            this.disabled = true;
-            this.textContent = buttonText[0];
-        });
-
-        map.on('click', (e) => {
-            const coords = e.lngLat;
-
-            if (selecting != 'end') {
-                // Just to visualize selected points, before the route is done
-                markers.push(
-                    new mapgl.Marker(map, {
-                        coordinates: coords,
-                        icon: 'https://docs.2gis.com/img/dotMarker.svg',
-                    }),
-                );
-            }
-
-            if (selecting === 'a') {
-                firstPoint = coords;
-                selecting = 'b';
-            } else if (selecting === 'b') {
-                secondPoint = coords;
-                selecting = 'end';
-            }
-
-            // If all points are selected — we can draw the route
-            if (firstPoint && secondPoint) {
-                directions.carRoute({
-                    points: [firstPoint, secondPoint],
-                });
-                markers.forEach((m) => {
-                    m.destroy();
-                });
-                resetButton.disabled = false;
-                resetButton.textContent = buttonText[1];
-            }
-        });
-    </script>
+        }</script>
 </body>
 </html>
